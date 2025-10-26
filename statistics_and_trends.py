@@ -6,9 +6,8 @@ on the heart disease dataset provided (heart.csv). It follows PEP-8 standards
 and includes complete documentation and output formatting.
 """
 
-# from corner import corner
+# import numpy as np   # Removed unused import
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import scipy.stats as ss
 import seaborn as sns
@@ -20,8 +19,13 @@ def plot_relational_plot(df):
     cholesterol and maximum heart rate (MaxHR) by heart disease status.
     """
     fig, ax = plt.subplots(figsize=(8, 6))
-    sns.scatterplot(x='Cholesterol', y='MaxHR', hue='HeartDisease', 
-    data=df, ax=ax)
+    sns.scatterplot(
+        x='Cholesterol',
+        y='MaxHR',
+        hue='HeartDisease',
+        data=df,
+        ax=ax
+    )
     ax.set_title('Cholesterol vs Max Heart Rate by Heart Disease')
     plt.savefig('relational_plot.png')
     plt.close(fig)
@@ -34,8 +38,14 @@ def plot_categorical_plot(df):
     across different chest pain types, colored by heart disease presence.
     """
     fig, ax = plt.subplots(figsize=(10, 6))
-    sns.barplot(x='ChestPainType', y='RestingBP', hue='HeartDisease', 
-    data=df, ax=ax, errorbar=None)
+    sns.barplot(
+        x='ChestPainType',
+        y='RestingBP',
+        hue='HeartDisease',
+        data=df,
+        ax=ax,
+        errorbar=None
+    )
     ax.set_title('Average Resting Blood Pressure by Chest Pain Type')
     plt.savefig('categorical_plot.png')
     plt.close(fig)
@@ -77,11 +87,9 @@ def preprocessing(df):
     print("\nSummary statistics:")
     print(df.describe())
 
-    # Convert categorical indicators (Y/N, M/F) to numeric where appropriate
     df['Sex'] = df['Sex'].map({'M': 1, 'F': 0})
     df['ExerciseAngina'] = df['ExerciseAngina'].map({'Y': 1, 'N': 0})
 
-    # Remove rows with missing or invalid cholesterol values
     df = df[df['Cholesterol'] > 0].dropna()
 
     print("\nCorrelation matrix:")
@@ -94,10 +102,12 @@ def writing(moments, col):
     Print the computed statistical moments and interpret their meaning.
     """
     print(f'\nFor the attribute {col}:')
-    print(f'Mean = {moments[0]:.2f}, '
-          f'Standard Deviation = {moments[1]:.2f}, '
-          f'Skewness = {moments[2]:.2f}, and '
-          f'Excess Kurtosis = {moments[3]:.2f}.')
+    print(
+        f'Mean = {moments[0]:.2f}, '
+        f'Standard Deviation = {moments[1]:.2f}, '
+        f'Skewness = {moments[2]:.2f}, '
+        f'Excess Kurtosis = {moments[3]:.2f}.'
+    )
 
     if moments[2] > 0.5:
         skew_desc = "right skewed"
@@ -113,7 +123,7 @@ def writing(moments, col):
     else:
         kurt_desc = "mesokurtic (normal-like)"
 
-    print(f"The data distribution is {skew_desc} and {kurt_desc}.")
+    print(f'The data distribution is {skew_desc} and {kurt_desc}.')
     return
 
 
