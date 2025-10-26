@@ -20,7 +20,8 @@ def plot_relational_plot(df):
     cholesterol and maximum heart rate (MaxHR) by heart disease status.
     """
     fig, ax = plt.subplots(figsize=(8, 6))
-    sns.scatterplot(x='Cholesterol', y='MaxHR', hue='HeartDisease', data=df, ax=ax)
+    sns.scatterplot(x='Cholesterol', y='MaxHR', hue='HeartDisease', 
+                    data=df, ax=ax)
     ax.set_title('Cholesterol vs Max Heart Rate by Heart Disease')
     plt.savefig('relational_plot.png')
     plt.close(fig)
@@ -33,7 +34,8 @@ def plot_categorical_plot(df):
     across different chest pain types, colored by heart disease presence.
     """
     fig, ax = plt.subplots(figsize=(10, 6))
-    sns.barplot(x='ChestPainType', y='RestingBP', hue='HeartDisease', data=df, ax=ax, errorbar=None)
+    sns.barplot(x='ChestPainType', y='RestingBP', hue='HeartDisease', 
+                data=df, ax=ax, errorbar=None)
     ax.set_title('Average Resting Blood Pressure by Chest Pain Type')
     plt.savefig('categorical_plot.png')
     plt.close(fig)
