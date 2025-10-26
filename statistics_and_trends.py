@@ -6,7 +6,7 @@ on the heart disease dataset provided (heart.csv). It follows PEP-8 standards
 and includes complete documentation and output formatting.
 """
 
-from corner import corner
+# from corner import corner
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -123,7 +123,7 @@ def main():
     - Plot visualizations
     - Compute and report statistical moments
     """
-    df = pd.read_csv('heart.csv')
+    df = pd.read_csv('data.csv')
     df = preprocessing(df)
     col = 'Cholesterol'
 
